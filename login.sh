@@ -4,9 +4,9 @@
 
 user=$(whoami)
 
-if [ ${1} = $user ]; then
+if [ "$1" = "$user" ]; then
   echo "Hello $user Welcome"
-elif [ -z $1 ]; then
+elif [ -z "$1" ]; then
   echo "Enter username"
 else
   echo "Wrong credentials"

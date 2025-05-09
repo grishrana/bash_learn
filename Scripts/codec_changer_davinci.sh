@@ -26,7 +26,9 @@ function convert {
   else
     # convert the codec with landscape scale
     ffmpeg -i "${1}" -vf "scale=1920:1080, fps=60" -c:v prores_ks -profile:v 3 -pix_fmt yuv422p10le -c:a pcm_s16le "${new_file}"
-    echo "${new_file}"
+    echo "--------------------------"
+    echo "Successfully Converted: ${new_file}"
+    echo "--------------------------"
   fi
 
 }
@@ -35,8 +37,7 @@ if [ -d "$1" ]; then
   cd "$(pwd)/${1}"
   mkdir -p changed/
   for f in *.mp4; do
-    file=${f%%${2}}
-    echo "${file}"
+    convert $f
   done
 elif [ -f "$1" ]; then
   mkdir -p changed/
